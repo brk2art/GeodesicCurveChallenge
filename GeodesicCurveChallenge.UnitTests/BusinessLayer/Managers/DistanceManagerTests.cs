@@ -49,6 +49,42 @@ namespace GeodesicCurveChallenge.UnitTests.BusinessLayer.Managers
         }
 
         [Fact]
+        public void Latitude_BiggerThan90_Test()
+        {
+            var model = _fixture.Create<GeodesicCurve>();
+            model.CityOne.Latitude = 124;
+            var actual = _distanceManager.Calculate(model);
+            Assert.True(actual == 0);
+        }
+
+        [Fact]
+        public void Latitude_LessThanMinus90_Test()
+        {
+            var model = _fixture.Create<GeodesicCurve>();
+            model.CityOne.Latitude = -278;
+            var actual = _distanceManager.Calculate(model);
+            Assert.True(actual == 0);
+        }
+
+        [Fact]
+        public void Longitude_BiggerThan180_Test()
+        {
+            var model = _fixture.Create<GeodesicCurve>();
+            model.CityOne.Latitude = 197;
+            var actual = _distanceManager.Calculate(model);
+            Assert.True(actual == 0);
+        }
+
+        [Fact]
+        public void Longitude_LessThanMinus180_Test()
+        {
+            var model = _fixture.Create<GeodesicCurve>();
+            model.CityOne.Latitude = -325;
+            var actual = _distanceManager.Calculate(model);
+            Assert.True(actual == 0);
+        }
+
+        [Fact]
         public void Distance_Null_Test()
         {
             var model = _fixture.Create<GeodesicCurve>();

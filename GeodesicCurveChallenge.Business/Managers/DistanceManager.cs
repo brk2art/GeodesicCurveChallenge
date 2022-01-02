@@ -21,6 +21,10 @@ namespace GeodesicCurveChallenge.Business.Managers
             if (model.CityOne?.Longitude == null) return 0;
             if (model.CityTwo?.Latitude == null) return 0;
             if (model.CityTwo?.Longitude == null) return 0;
+            if (model.CityOne?.Latitude < -90 || model.CityOne.Latitude > 90) return 0;
+            if (model.CityOne?.Longitude < -180 || model.CityOne.Longitude > 180) return 0;
+            if (model.CityTwo?.Latitude < -90 || model.CityTwo.Latitude > 90) return 0;
+            if (model.CityTwo?.Longitude < -180 || model.CityTwo.Longitude > 180) return 0;
 
             Distance distance = _factory.createDistance("Cosines");
             if(distance != null)

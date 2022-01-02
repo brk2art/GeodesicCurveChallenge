@@ -9,7 +9,7 @@ namespace GeodesicCurveChallenge.Business.Models
             double distanceLatitude = Radians(model.CityTwo.Latitude - model.CityOne.Latitude);
             double distanceLongitude = Radians(model.CityTwo.Longitude - model.CityOne.Longitude);
             double a = distanceLongitude * Math.Cos((Radians(model.CityOne.Latitude) + Radians(model.CityTwo.Latitude)) / 2);
-            double distance = Math.Sqrt(a * a + distanceLongitude * distanceLongitude) * R;
+            double distance = Math.Sqrt(a * a + distanceLatitude * distanceLatitude) * R;
             return distance;
         }
     }
